@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ayansh Cloud Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align:center;
+            margin-top:100px;
+        }
+
+        button{
+            font-size:24px;
+            padding:20px 40px;
+            border:none;
+            border-radius:12px;
+            cursor:pointer;
+        }
+
+        #status{
+            margin-top:20px;
+            font-size:18px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>☁️ Ayansh Cloud PC</h1>
+
+<button onclick="startServer()">
+🚀 Start Cloud PC
+</button>
+
+<div id="status"></div>
+
+<script>
+async function startServer(){
+
+    document.getElementById("status").innerText =
+        "Starting...";
+
+    try{
+
+        const response = await fetch(
+            "https://qp84be6913.execute-api.ap-south-1.amazonaws.com"
+        );
+
+        const text = await response.text();
+
+        document.getElementById("status").innerText =
+            "✅ " + text;
+
+    }
+
+    catch(err){
+
+        document.getElementById("status").innerText =
+            "❌ " + err;
+
+    }
+}
+</script>
+
+</body>
+</html>
